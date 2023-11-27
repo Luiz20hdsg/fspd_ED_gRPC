@@ -37,7 +37,7 @@ class PairServicer(pair_pb2_grpc.PairServicer):
             channel = grpc.insecure_channel(request.service)
             stub = pair_pb2_grpc.Part2ServicesStub(channel)
             #terminar na parte 2
-            response = stub.register(RequisicaoRegistro(servico=self.endereco, listaChaves=list(self.dicionario.keys())))
+            "..."
         else: 
             return pair_pb2.ActivateResponse(result=0)
 
@@ -64,8 +64,8 @@ def serve():
     # Start server
     server.add_insecure_port(address)
     server.start()
-    stop_event.wait()   # stop_event to be triggered in termination method
-    server.stop(2)      # 2 seconds of grace
-
+    stop_event.wait()   
+    server.stop(2)      
+    
 if __name__ == '__main__':
     serve()

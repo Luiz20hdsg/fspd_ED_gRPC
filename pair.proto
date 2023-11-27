@@ -1,42 +1,43 @@
+// pair.proto
 syntax = "proto3";
 
 package pair;
 
+
 message Request {
-  int32 key = 1;
+  uint64 key = 1;
   string value = 2;
 }
 
-message RetrieveResponse {
-  string value = 1;
+message Response {
+  int64 result = 1;  
+}
+
+message ConsultRequest {
+  uint64 key = 1;
+}
+
+message ConsultResponse {
+  string service = 1;
 }
 
 message ActivateRequest {
-  string service_identifier = 1;
+  string service = 1;
 }
 
 message ActivateResponse {
-  int32 result = 1;
+  uint64 result = 1;  
 }
 
-message Response {
-  // Defina os campos da mensagem Response, se necessário.
-}
 
-message MapRequest {
-  int32 key = 1;
-}
-
-message MapResponse {
-  string service_identifier = 1;
+message TerminateResponse {
+  uint64 result = 1;
 }
 
 service Pair {
-  rpc Insert(Request) returns (Response);
-  rpc Map(MapRequest) returns (MapResponse);
-  rpc Retrieve(Request) returns (RetrieveResponse);
-  rpc Activate(ActivateRequest) returns (ActivateResponse);
-  rpc Terminate(Empty) returns (Response);
+  rpc Insert(Request) returns (Response)  {}
+  rpc Consult(ConsultRequest) returns (ConsultResponse) {}
+  rpc Activate(ActivateRequest) returns (ActivateResponse) {}
+  rpc Terminate(Empty) returns (TerminateResponse) {}
 }
 
-message Empty {}

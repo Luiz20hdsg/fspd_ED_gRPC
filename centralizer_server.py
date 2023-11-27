@@ -29,15 +29,7 @@ class CentralizerServicer(centralizer_pb2_grpc.CentralizerServicer):
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     centralizer_pb2_grpc.add_CentralizerServicer_to_server(CentralizerServicer(), server)
-    port = 50052  # Porta para o servidor centralizador
-    server.add_insecure_port(f'[::]:{port}')
-    server.start()
-    print(f"Centralizer Server started on port {port}")
-    try:
-        while True:
-            time.sleep(86400)  # Um dia em segundos
-    except KeyboardInterrupt:
-        server.stop(0)
+    "..."
 
 if __name__ == '__main__':
     serve()
