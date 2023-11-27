@@ -1,0 +1,29 @@
+// centralizer.proto
+syntax = "proto3";
+
+package centralizer;
+
+message RegisterRequest {
+  string service_identifier = 1;
+  repeated int32 keys = 2;
+}
+
+message MapRequest {
+  int32 key = 1;
+}
+
+message MapResponse {
+  string service_identifier = 1;
+}
+
+message Response {
+  int32 result = 1;
+}
+
+service Centralizer {
+  rpc Register(RegisterRequest) returns (Response);
+  rpc Map(MapRequest) returns (MapResponse);
+  rpc Terminate(centralizer.Empty) returns (Response);
+}
+
+message Empty {}

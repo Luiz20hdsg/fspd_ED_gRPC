@@ -1,0 +1,43 @@
+// pair.proto
+syntax = "proto3";
+
+package pair;
+
+
+message Request {
+  uint64 key = 1;
+  string value = 2;
+}
+
+message Response {
+  int64 result = 1;  
+}
+
+message ConsultRequest {
+  uint64 key = 1;
+}
+
+message ConsultResponse {
+  string service = 1;
+}
+
+message ActivateRequest {
+  string service = 1;
+}
+
+message ActivateResponse {
+  uint64 result = 1;  
+}
+
+
+message TerminateResponse {
+  uint64 result = 1;
+}
+
+service Pair {
+  rpc Insert(Request) returns (Response)  {}
+  rpc Consult(ConsultRequest) returns (ConsultResponse) {}
+  rpc Activate(ActivateRequest) returns (ActivateResponse) {}
+  rpc Terminate(Empty) returns (TerminateResponse) {}
+}
+
